@@ -4,6 +4,7 @@ import { env } from "../configs/environment.config";
 
 export interface AuthRequest extends Request {
   userId?: string;
+  username?: string
 }
 
 export const authMiddleware = (
@@ -21,10 +22,11 @@ export const authMiddleware = (
     //Verify and decode token
     const decodeToken = jwt.verify(token, env.SECRET_KEY) as {
       userId: string;
-      roleId: string;
+      username: string;
     };
     
     req.userId = decodeToken.userId;
+    req.username = decodeToken.username;
 
     next();
   } catch (error) {

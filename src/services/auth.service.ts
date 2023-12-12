@@ -17,12 +17,12 @@ export async function loginService(body: LoginDTO) {
 
   if(!dataUser) throw new ApiError (400, "Bad Credentials")
 
-  // if (!dataUser.password === body.password) throw new ApiError(401, "Bad Credential")
+  if (dataUser.password != body.password) throw new ApiError(401, "Bad Credential")
 
-  // const token = jwt.sign(
-  //   { userId: dataUser.username },
-  //   env.SECRET_KEY,
-  //   { expiresIn: "1d" }
-  // );
-  // return { token }
+  const token = jwt.sign(
+    { userId: dataUser.id, username: dataUser.username },
+    env.SECRET_KEY,
+    { expiresIn: "1d" }
+  );
+  return { token }
 }
