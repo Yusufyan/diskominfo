@@ -15,10 +15,10 @@ import { authMiddleware } from "../middlewares/auth.middleware";
 const userRouter = express.Router();
 
 userRouter.get("/", authMiddleware, getAllUserController);
-userRouter.get("/user", getUserController);
+userRouter.get("/user", authMiddleware, getUserController);
 userRouter.post("/", createUserController);
 userRouter.patch("/:id", updateUserController);
-userRouter.delete("/", deleteUserController);
+userRouter.delete("/:id", deleteUserController);
 
 //Soal A
 userRouter.get("/a5", soalA5Controller)

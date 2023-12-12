@@ -14,3 +14,9 @@ export class UserUpdateDTO{
   username: string
   email: string
 }
+
+export class CourseCreateDTO {
+  course: string
+  mentor: string
+  title: string
+}

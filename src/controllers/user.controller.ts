@@ -26,8 +26,11 @@ export async function createUserController(req: Request, res: Response) {
   }
 }
 
-export async function getAllUserController(req: Request, res: Response) {
+export async function getAllUserController(req: AuthRequest, res: Response) {
   try {
+    if(req.username != "Admin") {
+      throw new ApiError(401, "Unauthorized");
+    }
     const getUser = await getAllUser();
 
     return res.status(200).json(getUser);

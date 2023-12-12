@@ -13,10 +13,10 @@ export async function loginService(body: LoginDTO) {
       { email: body.usernameOrEmail },
     ],
   });
-  console.log(dataUser.password)
+  // console.log(dataUser.password)
 
   if(!dataUser) throw new ApiError (400, "Bad Credentials")
-
+  
   if (dataUser.password != body.password) throw new ApiError(401, "Bad Credential")
 
   const token = jwt.sign(

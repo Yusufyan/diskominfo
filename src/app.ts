@@ -10,6 +10,7 @@ import { UserCourseSeeder } from "./seeders/user-course.seeder";
 import userRouter from "./routes/user.route";
 import { ResponseHandler } from "./middlewares/response.middleware";
 import authRouter from "./routes/auth.route";
+import courseRouter from "./routes/course.route";
 
 const app: Application = express();
 const port: number = Number(env.APP_PORT);
@@ -39,3 +40,5 @@ createConnection(configDb)
 app.use("/user", userRouter)
 //Auth Route
 app.use("/auth", authRouter)
+//Course Router
+app.use('/course', courseRouter);
